@@ -12,19 +12,19 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install ./sdformat_mjcf -vv --no-deps
-  number: 0
+  number: 1
   entry_points:
     - sdf2mjcf = sdformat_mjcf.sdformat_to_mjcf.cli:main
     - mjcf2sdf = sdformat_mjcf.mjcf_to_sdformat.cli:main
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
     - wheel
     - setuptools
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - gz-math7-python
     - sdformat13-python
     - dm-control
@@ -43,6 +43,7 @@ test:
   requires:
     - pip
     - pytest
+    - python {{ python_min }}
 
 about:
   home: https://github.com/gazebosim/gz-mujoco
